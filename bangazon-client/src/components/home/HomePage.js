@@ -6,7 +6,7 @@ const HomePage = props => {
     const [products, setProducts] = useState([])
     // const { isAuthenticated } = useSimpleAuth()
 
-    useEffect(() =>
+    useEffect(() => {
         fetch('http://localhost:8000/products', {
             "method": "GET",
             "headers": {
@@ -15,9 +15,8 @@ const HomePage = props => {
             }
         })
         .then(res => res.json())
-        .then(setProducts),
-        []
-        );
+        .then(setProducts)
+    }, []);
 
 
 
