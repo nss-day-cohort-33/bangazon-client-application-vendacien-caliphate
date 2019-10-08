@@ -1,3 +1,8 @@
+//Author: Karla Gallegos & Jake Scott
+//Purpose: Allow a user to fill our a product form and get alerted if they don't select procut category.
+//Methods: GET, POST
+
+
 import React, { useEffect, useState, useRef } from "react";
 import useModal from "../../hooks/ui/useModal";
 
@@ -128,15 +133,7 @@ const ProductForm = props => {
               ref={description}
               placeholder="Product Description"
             ></textarea>
-            {/* <input
-              ref={firstName}
-              type="text"
-              name="firstName"
-              className="form-control"
-              placeholder="First name"
-              required
-              autoFocus
-            /> */}
+
           </fieldset>
           <fieldset>
             <label htmlFor="quantity"> Quantity </label>
