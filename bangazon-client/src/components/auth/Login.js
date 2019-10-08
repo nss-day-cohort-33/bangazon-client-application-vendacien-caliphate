@@ -34,7 +34,7 @@ const Login = props => {
             <form className="form--login" onSubmit={handleLogin}>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <fieldset>
-                    <label htmlFor="userName"> User Name </label>
+                    <label htmlFor="username"> User Name </label>
                     <input ref={username} type="username"
                         className="form-control"
                         placeholder="User Name"
