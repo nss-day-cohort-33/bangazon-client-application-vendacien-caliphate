@@ -5,6 +5,7 @@ import Register from "./auth/Register"
 import Login from "./auth/Login"
 import HomePage from "./home/HomePage"
 import ProductDetail from "./product/ProductDetail"
+import ProductForm from "./product/ProductForm"
 
 
 const ApplicationViews = () => {
@@ -34,6 +35,12 @@ const ApplicationViews = () => {
             }}
 
             />
+            <Route
+                path="/productform" render={props => {
+                    return <ProductForm {...props} />
+                }}
+            />
+
 
 
         </React.Fragment>
