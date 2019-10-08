@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
-import Product from "./Product"
+import Product from "./ProductCard"
 import "./ProductCategory.css"
 
 // Created By: Alex Rumsey
