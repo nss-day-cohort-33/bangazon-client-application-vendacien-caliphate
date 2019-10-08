@@ -9,6 +9,7 @@ import ProductCategories from "./product/ProductCategories"
 import ProductCategory  from "./product/ProductCategory"
 import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
+import Profile from "./payment/Profile"
 
 
 const ApplicationViews = () => {
@@ -96,6 +97,11 @@ const ApplicationViews = () => {
                 path="/productform" render={props => {
                     return <ProductForm {...props} />
                 }}
+            />
+
+            <Route exact path="/mysettings" render={props => {
+                return <Profile {...props} />
+            }}
             />
 
 
