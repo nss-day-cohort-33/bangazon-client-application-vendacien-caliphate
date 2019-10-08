@@ -5,6 +5,7 @@ import Register from "./auth/Register"
 import Login from "./auth/Login"
 import HomePage from "./home/HomePage"
 import ProductForm from "./product/ProductForm"
+import PaymentForm from "./payment/PaymentForm"
 
 
 const ApplicationViews = () => {
@@ -32,6 +33,11 @@ const ApplicationViews = () => {
             <Route
                 path="/productform" render={props => {
                     return <ProductForm {...props} />
+                }}
+            />
+            <Route
+                path="/paymentform" render={props => {
+                    return <PaymentForm {...props} />
                 }}
             />
 
