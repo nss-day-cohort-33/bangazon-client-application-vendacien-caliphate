@@ -7,6 +7,8 @@ import Login from "./auth/Login"
 import HomePage from "./home/HomePage"
 import ProductCategories from "./product/ProductCategories"
 import ProductCategory  from "./product/ProductCategory"
+import ProductDetail from "./product/ProductDetail"
+import ProductForm from "./product/ProductForm"
 
 
 const ApplicationViews = () => {
@@ -84,6 +86,17 @@ const ApplicationViews = () => {
                 return <ProductCategory {...props} category={ category }/>
                 }}
             /> 
+
+            <Route exact path="/products/:productId(\d+)" render={(props) => {
+                return <ProductDetail {...props} />
+            }}
+
+            />
+            <Route
+                path="/productform" render={props => {
+                    return <ProductForm {...props} />
+                }}
+            />
 
 
 
