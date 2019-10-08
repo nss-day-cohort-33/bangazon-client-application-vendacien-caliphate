@@ -4,21 +4,18 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import Product from "./Product"
 import "./ProductCategory.css"
 
+// Created By: Alex Rumsey
+// Gets products by category ID, then displays products in the DOM by category in lists of three.
+
 const ProductCategory = props => {
     const [products, setProducts] = useState([])
-    const { isAuthenticated } = useSimpleAuth()
 
     const getProducts = () => {
-        if (isAuthenticated()) {
             fetch(`http://localhost:8000/products?category=${props.category.id}`, {
                 "method": "GET",
-                "headers": {
-                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                }
             })
                 .then(response => response.json())
                 .then(setProducts)
-        }
     }
 
     useEffect(getProducts, [])
@@ -27,15 +24,15 @@ const ProductCategory = props => {
         <>
             { products.length > 0 ?
               <article className="categoryList">
-                <Link className="nav-link" to={`/productcategories/${props.category.id}`}>
+                <Link className="nav-link" to={`/types/${props.category.id}`}>
                 <h3>{props.category.name}({products.length})</h3>
                 </Link>
                 <div className={`productDiv category-${props.category.id}`}>
                   {
                       products.slice(0, 3).map(product =>
-                          <Product key={product.id} product={product} />
-                      )
-                  }
+                        <Product key={product.id} product={product} />
+                        )
+                    }
                 </div>
             </article>
             :

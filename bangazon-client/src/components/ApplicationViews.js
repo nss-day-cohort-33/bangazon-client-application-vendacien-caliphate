@@ -5,7 +5,6 @@ import useSimpleAuth from "../hooks/ui/useSimpleAuth"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
 import HomePage from "./home/HomePage"
-import ProductList from "./product/ProductList"
 import ProductCategories from "./product/ProductCategories"
 import ProductCategory  from "./product/ProductCategory"
 
@@ -17,34 +16,30 @@ const ApplicationViews = () => {
 
     const getProducts = () => {
         if (isAuthenticated()) {
-              fetch(`http://localhost:8000/products`, {
-                  "method": "GET",
-                  "headers": {
-                      "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                  }
-              })
-                  .then(response => response.json())
-                  .then(setProducts)
-          }
-      }
+            fetch(`http://localhost:8000/products`, {
+                "method": "GET",
+                "headers": {
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setProducts)
+        }
+    }
+
+    const getCategories = () => {
+            fetch(`http://localhost:8000/producttypes`, {
+                "method": "GET",
+            })
+                .then(response => response.json())
+                .then(setCategories)
+    }
+
   
-      const getCategories = () => {
-              if (isAuthenticated()) {
-              fetch(`http://localhost:8000/productcategories`, {
-                  "method": "GET",
-                  "headers": {
-                      "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                  }
-              })
-                  .then(response => response.json())
-                  .then(setCategories)
-          }
-      }
-  
-      useEffect(() => {
-          getProducts()
-          getCategories()
-      }, [])
+    useEffect(() => {
+        getProducts()
+        getCategories()
+    }, [])
 
 
     return (
@@ -69,21 +64,24 @@ const ApplicationViews = () => {
             />
 
             <Route
-                exact path="/productcategories" render={props => {
+                exact path="/types" render={props => {
+                    console.log("types cats", categories)
                     return (
-                       <ProductCategories categories={categories} />
+                       <ProductCategories {...props} categories={categories} />
                     )
                 }}
             />
 
-            <Route exact path="/productcategories/:categoryId(\d+)" render={(props) => {
+            <Route exact path="/types/:categoryId(\d+)" render={(props) => {
+                console.log("params",props.match.params.categoryId, categories )
                 let category = categories.find(category =>
                 category.id === +props.match.params.categoryId
                 )
+                console.log(category)
                 if (!category) {
                     category = {id:404, name:"Category Not Found." }
                 }
-                return <ProductCategory {...props} category={ category } />
+                return <ProductCategory {...props} category={ category }/>
                 }}
             /> 
 
@@ -94,3 +92,5 @@ const ApplicationViews = () => {
 }
 
 export default withRouter(ApplicationViews)
+
+// {...props} category={ category }
