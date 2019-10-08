@@ -23,12 +23,13 @@ const ProductForm = props => {
 
     const newProduct = {
       name: name.current.value,
-      price: price.current.value,
+      price: parseInt(price.current.value),
       description: description.current.value,
-      quantity: quantity.current.value,
+      quantity: parseInt(quantity.current.value),
       city: city.current.value,
-      category_type_id: category_id.current.value,
-      customer_id: localStorage.getItem("customer_id")
+      producttype_id: parseInt(category_id.current.value),
+      customer_id: parseInt(localStorage.getItem("customer_id")),
+      product_image: ""
     };
     if (category_id.current.value === "") {
       toggleDialog(true);
@@ -43,7 +44,7 @@ const ProductForm = props => {
 
   const getCategories = () => {
     // Fetch the data from localhost:8000/categories
-    fetch("http://localhost:8000/productcategory", {
+    fetch("http://localhost:8000/producttypes", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -53,13 +54,13 @@ const ProductForm = props => {
       //   Convert to JSON
       .then(response => response.json())
       //   Store itinerary items in state variable
-      .then(allCategories => {
-        setCategoryList(allCategories);
+      .then(categoryList => {
+        setCategoryList(categoryList);
       });
   };
 
-  const createProduct = newProduct => {
-    return fetch("http://localhost:8000/productform", {
+  const createProduct = (newProduct) => {
+    return fetch("http://localhost:8000/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +87,9 @@ const ProductForm = props => {
     window.addEventListener("keyup", handler);
 
     return () => window.removeEventListener("keyup", handler);
-  }, [modalIsOpen, toggleDialog]);
+  }, []);
+
+
 
   // Create HTML representation with JSX
   return (
