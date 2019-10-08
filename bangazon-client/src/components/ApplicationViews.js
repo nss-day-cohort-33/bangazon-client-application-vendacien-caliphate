@@ -98,6 +98,8 @@ const ApplicationViews = () => {
                 }}
             />
 
+            {/* <Route exact path="/mysettings" */}
+
 
 
         </React.Fragment>
