@@ -43,7 +43,7 @@ const ProductForm = props => {
 
   const getCategories = () => {
     // Fetch the data from localhost:8000/categories
-    fetch("http://localhost:8000/productcategory", {
+    fetch("http://localhost:8000/producttypes", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -53,8 +53,8 @@ const ProductForm = props => {
       //   Convert to JSON
       .then(response => response.json())
       //   Store itinerary items in state variable
-      .then(allCategories => {
-        setCategoryList(allCategories);
+      .then(categoryList => {
+        setCategoryList(categoryList);
       });
   };
 
@@ -87,6 +87,8 @@ const ProductForm = props => {
 
     return () => window.removeEventListener("keyup", handler);
   }, [modalIsOpen, toggleDialog]);
+
+  useEffect(getCategories, [])
 
   // Create HTML representation with JSX
   return (
