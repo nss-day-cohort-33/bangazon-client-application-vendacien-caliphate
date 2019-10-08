@@ -20,6 +20,7 @@ const useSimpleAuth = () => {
             .then(res => {
                 if ("token" in res) {
                     localStorage.setItem( "bangazon_token", res.token )
+                    localStorage.setItem("customer_id", res.customer_id)
                     setIsLoggedIn(true)
                 }
             })
@@ -38,6 +39,7 @@ const useSimpleAuth = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "bangazon_token", res.token )
+                    localStorage.setItem("customer_id", res.customer_id)
                     setIsLoggedIn(true)
                 }
             })
