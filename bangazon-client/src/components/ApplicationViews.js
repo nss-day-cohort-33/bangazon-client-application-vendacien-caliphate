@@ -98,7 +98,10 @@ const ApplicationViews = () => {
                 }}
             />
 
-            {/* <Route exact path="/mysettings" */}
+            <Route exact path="/mysettings" render={props => {
+                return <Profile {...props} />
+            }}
+            />
 
 
 
