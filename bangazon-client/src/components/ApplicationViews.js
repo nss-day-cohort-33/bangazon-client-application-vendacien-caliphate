@@ -37,7 +37,7 @@ const ApplicationViews = () => {
                 .then(setCategories)
     }
 
-  
+
     useEffect(() => {
         getProducts()
         getCategories()
@@ -85,7 +85,7 @@ const ApplicationViews = () => {
                 }
                 return <ProductCategory {...props} category={ category }/>
                 }}
-            /> 
+            />
 
             <Route exact path="/products/:productId(\d+)" render={(props) => {
                 return <ProductDetail {...props} />
