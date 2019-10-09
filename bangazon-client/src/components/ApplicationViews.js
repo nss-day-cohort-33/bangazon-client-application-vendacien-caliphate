@@ -10,6 +10,7 @@ import ProductCategory  from "./product/ProductCategory"
 import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import Profile from "./payment/Profile"
+import ProductCategoryList from "./product/ProdCatList"
 
 
 const ApplicationViews = () => {
@@ -84,7 +85,7 @@ const ApplicationViews = () => {
                 if (!category) {
                     category = {id:404, name:"Category Not Found." }
                 }
-                return <ProductCategory {...props} category={ category }/>
+                return <ProductCategoryList {...props} category={ category }/>
                 }}
             /> 
 
