@@ -1,41 +1,32 @@
 import React, { useEffect, useState } from "react";
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import ProductList from "../product/ProductList";
+
+// // """
+// //    Author: Drew Palazola
+//      This is the home page "bangazon", this gets all products and proceeds to list them out.
+// // """
 
 const HomePage = props => {
   const [products, setProducts] = useState([]);
-  // const { isAuthenticated } = useSimpleAuth()
 
   useEffect(() => {
     fetch("http://localhost:8000/products", {
       method: "GET",
       headers: {
         Accept: "application/json"
-        // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       .then(res => res.json())
       .then(setProducts);
   }, []);
 
-  // const getProduct = (productId) => {
-  //     if (isAuthenticated()) {
-  //         fetch(`http://localhost:8000/products?product_Id=${productId}`, {
-  //             "method": "GET",
-  //             "headers": {
-  //                 "Accept": "application/json",
-  //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-  //             }
-  //         })
-  //         .then(response => response.json())
-  //         .then(setProducts)
-  //     }
-  // }
 
   return (
     <>
       <main className="explorer">
-        <ProductList products={products} {...props} />
+
+        <h4><ProductList products={products} {...props} /></h4>
+
       </main>
     </>
   );

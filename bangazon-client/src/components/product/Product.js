@@ -1,6 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
+// // """
+// //    Author: Drew Palazola
+//      Creates the individual product name that is a hyperlink to its details.
+// // """
+
 const Product = props => {
 
     return (
