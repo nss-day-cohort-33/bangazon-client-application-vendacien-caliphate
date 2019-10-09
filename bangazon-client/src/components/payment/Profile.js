@@ -9,7 +9,7 @@ const Profile = props => {
                 <Link className="nav-link" to={`./PaymentForm`}>
                     <h5>Add a Payment</h5>
                 </Link>
-                <Link className="nav-link" to={`./PaymentList`}>
+                <Link className="nav-link" to={`./paymentlist`}>
                     <h5>Payment Options</h5>
                 </Link>
             </section>
