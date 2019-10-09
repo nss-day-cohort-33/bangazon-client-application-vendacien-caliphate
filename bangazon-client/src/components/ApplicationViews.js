@@ -9,6 +9,7 @@ import ProductCategories from "./product/ProductCategories"
 import ProductCategory  from "./product/ProductCategory"
 import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
+import PaymentForm from "./payment/PaymentForm"
 import Profile from "./payment/Profile"
 
 
@@ -38,7 +39,7 @@ const ApplicationViews = () => {
                 .then(setCategories)
     }
 
-  
+
     useEffect(() => {
         getProducts()
         getCategories()
@@ -86,7 +87,7 @@ const ApplicationViews = () => {
                 }
                 return <ProductCategory {...props} category={ category }/>
                 }}
-            /> 
+            />
 
             <Route exact path="/products/:productId(\d+)" render={(props) => {
                 return <ProductDetail {...props} />
@@ -96,6 +97,11 @@ const ApplicationViews = () => {
             <Route
                 path="/productform" render={props => {
                     return <ProductForm {...props} />
+                }}
+            />
+            <Route
+                path="/paymentform" render={props => {
+                    return <PaymentForm {...props} />
                 }}
             />
 
