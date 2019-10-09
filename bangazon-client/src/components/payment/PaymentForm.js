@@ -32,7 +32,7 @@ const PaymentForm = props => {
             })
                 .then(response => response.json())
                 .then(() => {
-                props.history.push("/paymentform")
+                props.history.push("/mysettings")
                 })
 
         }
