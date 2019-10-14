@@ -177,7 +177,7 @@ const ProductForm = props => {
             <select ref={category_id}>
               <option value="">Select Category</option>
               {categoryList.map(category => {
-                return <option value={category.id}>{category.name}</option>;
+                return <option key={category.id} value={category.id}>{category.name}</option>;
               })}
             </select>
           </fieldset>
