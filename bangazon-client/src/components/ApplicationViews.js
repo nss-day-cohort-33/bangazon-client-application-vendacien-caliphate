@@ -12,6 +12,7 @@ import ProductForm from "./product/ProductForm"
 import PaymentForm from "./payment/PaymentForm"
 import Profile from "./payment/Profile"
 import ProductCategoryList from "./product/ProdCatList"
+import PaymentOptions from "./payment/PaymentOptions"
 
 
 const ApplicationViews = () => {
@@ -110,6 +111,12 @@ const ApplicationViews = () => {
                 return <Profile {...props} />
             }}
             />
+
+            <Route exact path="/paymentlist" render={props => {
+                return <PaymentOptions {...props} />
+            }}
+            />
+
 
 
 
