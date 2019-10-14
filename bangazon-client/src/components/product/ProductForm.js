@@ -55,6 +55,7 @@ const ProductForm = props => {
       .then(response => response.json())
       //   Store itinerary items in state variable
       .then(categoryList => {
+        console.log(categoryList,"CatagoryList")
         setCategoryList(categoryList);
       });
   };
