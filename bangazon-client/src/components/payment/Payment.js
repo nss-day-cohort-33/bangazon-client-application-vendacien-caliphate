@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 // // """
-// //    Author: Drew Palazola
+// //    Author: Drew Palazola and Jake Scott
 //
 // // """
 
@@ -19,9 +19,8 @@ const Payment = props => {
             "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
-          .then(res => res.json())
           .then(() => {
-              props.history.push("/")
+              props.history.push("/mysettings")
           })
       }
 
