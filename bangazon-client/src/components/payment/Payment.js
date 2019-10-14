@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 // // """
-// //    Author: Drew Palazola
+// //    Author: Drew Palazola and Jake Scott
 //
 // // """
 
@@ -13,15 +13,14 @@ const Payment = props => {
 
     const deleteItem = (paymentItem) => {
         if (isAuthenticated())
-        fetch(`http://localhost:8000/paymenttypes?paymenttype_id=${paymentItem}`, {
+        fetch(`http://localhost:8000/paymenttypes/${paymentItem}`, {
           method: "DELETE",
           headers: {
             "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
-          .then(res => res.json())
           .then(() => {
-              props.history.push("/paymentlist")
+              props.history.push("/mysettings")
           })
       }
 
@@ -30,6 +29,7 @@ const Payment = props => {
             <section className="payment">
                 <h4>{props.payment.merchant_name}</h4>
                 <button onClick={() => {deleteItem(props.payment.id)}}>Delete This Payment Option</button>
+
             </section>
         </>
     )
