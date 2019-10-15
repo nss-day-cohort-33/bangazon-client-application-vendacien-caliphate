@@ -17,24 +17,8 @@ import MyProducts from "./product/MyProduct"
 
 
 const ApplicationViews = () => {
-    // const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
-    // const { isAuthenticated } = useSimpleAuth()
 
-    // const getProducts = () => {
-    //     if (isAuthenticated()) {
-    //         fetch(`http://localhost:8000/products`, {
-    //             "method": "GET",
-    //             headers :{
-    //                 "Content-Type": "application/json",
-    //                 "Accept": "application/json",
-    //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
-    //             }
-    //         })
-    //             .then(response => response.json())
-    //             .then(setProducts)
-    //     }
-    // }
 
     const getCategories = () => {
             fetch(`http://localhost:8000/producttypes`, {
@@ -51,7 +35,6 @@ const ApplicationViews = () => {
 
 
     useEffect(() => {
-        // getProducts()
         getCategories()
     }, [])
 
@@ -79,23 +62,24 @@ const ApplicationViews = () => {
 
             <Route
                 exact path="/types" render={props => {
-                    console.log("types cats", categories)
                     return (
-                       <ProductCategories {...props} categories={categories} />
+                       <ProductCategories {...props} />
                     )
                 }}
             />
 
             <Route exact path="/types/:categoryId(\d+)" render={(props) => {
-                console.log("params",props.match.params.categoryId, categories )
-                let category = categories.find(category =>
-                category.id === +props.match.params.categoryId
-                )
-                console.log(category)
-                if (!category) {
-                    category = {id:404, name:"Category Not Found." }
-                }
-                return <ProductCategoryList {...props} category={ category }/>
+                const categoryId = +props.match.params.categoryId
+                console.log("categoryId",+props.match.params.categoryId)
+                // console.log("params",props.match.params.categoryId, categories )
+                // let category = categories.find(category =>
+                // category.id === +props.match.params.categoryId
+                // )
+                // console.log(category)
+                // if (!category) {
+                //     category = {id:404, name:"Category Not Found." }
+                // }
+                return <ProductCategoryList {...props} category={ categories } categoryId={categoryId} />
                 }}
             />
 
