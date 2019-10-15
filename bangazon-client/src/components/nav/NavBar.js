@@ -21,6 +21,8 @@ const NavBar = props => {
                 <li className="nav-item">
                     <Link className="nav-link" to="/mysettings">My Profile</Link>
                 </li>
+                <input placeholder="search for a city" autoFocus name="city" type="text">
+                </input>
 
                 {
                     isAuthenticated() ?
