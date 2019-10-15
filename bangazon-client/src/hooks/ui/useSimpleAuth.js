@@ -48,6 +48,7 @@ const useSimpleAuth = () => {
     const logout = () => {
         setIsLoggedIn(false)
         localStorage.removeItem("bangazon_token")
+        localStorage.removeItem("customer_id")
     }
 
     return { isAuthenticated, logout, login, register }

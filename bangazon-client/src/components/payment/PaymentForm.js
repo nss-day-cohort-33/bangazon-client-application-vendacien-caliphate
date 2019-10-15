@@ -31,8 +31,13 @@ const PaymentForm = props => {
             })
             })
                 .then(response => response.json())
-                .then(() => {
-                props.history.push("/mysettings")
+                .then((response) => {
+                  // console.log("error" in response)
+                  if("error" in response === true){
+                    alert("The expiration date is in the past")
+                  } else{
+                    props.history.push("/mysettings")
+                  }
                 })
 
         }
