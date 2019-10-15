@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ProductList from "../product/ProductList";
 
 // // """
@@ -8,6 +8,7 @@ import ProductList from "../product/ProductList";
 
 const HomePage = props => {
   const [products, setProducts] = useState([]);
+  const search = useRef()
 
   useEffect(() => {
     fetch("http://localhost:8000/products", {
@@ -20,10 +21,22 @@ const HomePage = props => {
       .then(setProducts);
   }, []);
 
+  const SubmitSearch = e => {
+    e.preventDefault()
+    console.log("it works")
+  }
 
   return (
     <>
       <main className="explorer">
+        <label name="city">Search for a City</label>
+        <br></br>
+        <form onSubmit={SubmitSearch}>
+          <input placeholder="ex: Nashville" autoFocus name="city" ref={search} type="text">
+          </input>
+
+        </form>
+
 
         <h4><ProductList products={products} {...props} /></h4>
 
