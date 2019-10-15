@@ -17,26 +17,33 @@ import MyProducts from "./product/MyProduct"
 
 
 const ApplicationViews = () => {
-    const [products, setProducts] = useState([])
+    // const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
-    const { isAuthenticated } = useSimpleAuth()
+    // const { isAuthenticated } = useSimpleAuth()
 
-    const getProducts = () => {
-        if (isAuthenticated()) {
-            fetch(`http://localhost:8000/products`, {
-                "method": "GET",
-                "headers": {
-                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
-                }
-            })
-                .then(response => response.json())
-                .then(setProducts)
-        }
-    }
+    // const getProducts = () => {
+    //     if (isAuthenticated()) {
+    //         fetch(`http://localhost:8000/products`, {
+    //             "method": "GET",
+    //             headers :{
+    //                 "Content-Type": "application/json",
+    //                 "Accept": "application/json",
+    //                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+    //             }
+    //         })
+    //             .then(response => response.json())
+    //             .then(setProducts)
+    //     }
+    // }
 
     const getCategories = () => {
             fetch(`http://localhost:8000/producttypes`, {
                 "method": "GET",
+                headers :{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+                }
             })
                 .then(response => response.json())
                 .then(setCategories)
@@ -44,7 +51,7 @@ const ApplicationViews = () => {
 
 
     useEffect(() => {
-        getProducts()
+        // getProducts()
         getCategories()
     }, [])
 

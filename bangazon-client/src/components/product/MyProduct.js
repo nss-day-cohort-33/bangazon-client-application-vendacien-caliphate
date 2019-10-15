@@ -1,32 +1,51 @@
 import React, { useEffect, useState } from "react";
+import ProductCard from "./ProductCard"
 
 // // """
-// //    Author: Drew Palazola
-//      Creates the individual product name that is a hyperlink to its details.
+// //    Author: Krystal Gates
+//      Creates the individual product name for MyProducts that is a hyperlink to its details.
 // // """
 
 const MyProducts = props => {
     const [myProducts, setMyProducts] = useState([])
 
     const getMyProducts = () => {
-            fetch(`http://localhost:8000/products?customer=${+localStorage.getItem("customer_id")}`, {
-                "method": "GET",
-                Authorization: `Token ${localStorage.getItem("bangazon_token")}`,
+            fetch(`http://localhost:8000/products/myproduct`, {
+                method: "GET",
+                headers :{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+                }
             })
                 .then(response => response.json())
-                .then(setMyProducts)
+                .then((product) => setMyProducts(product))
     }
+
+    const deleteMyProduct = (productId) => {
+        fetch(`http://localhost:8000/products/${productId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+          }
+        })
+          .then(() => {
+              getMyProducts()
+          })
+      }
 
     useEffect(getMyProducts, [])
 
-    console.log("id", +localStorage.getItem("customer_id"))
     return (
         <>
             <section className="product">
            <h1>My Products</h1>
            {
                       myProducts.map(product =>
-                            <p>{product.name} <button>Delete</button> </p>
+                        <p>
+                        <ProductCard product={product} /> <button onClick={() => {deleteMyProduct(product.id)}}>Delete</button> </p>
                         )
                     }
             </section>
