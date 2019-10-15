@@ -13,6 +13,7 @@ import PaymentForm from "./payment/PaymentForm"
 import Profile from "./payment/Profile"
 import ProductCategoryList from "./product/ProdCatList"
 import PaymentOptions from "./payment/PaymentOptions"
+import MyCart from "./Order/CurrentOrder"
 
 
 const ApplicationViews = () => {
@@ -114,6 +115,10 @@ const ApplicationViews = () => {
 
             <Route exact path="/paymentlist" render={props => {
                 return <PaymentOptions {...props} />
+            }}
+            />
+            <Route exact path="/mycart" render={props => {
+                return <MyCart {...props} />
             }}
             />
 
