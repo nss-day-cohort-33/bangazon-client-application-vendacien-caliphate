@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 
 const MyCart = props => {
-  const [open_order, setOrder] = useState({line_items: []})
+  const [products, setProducts] = useState([])
 
   const getOpenOrder = () => {
-    fetch(`http://localhost:8000/orders?cart=true`, {
+    fetch(`http://localhost:8000/orders/cart`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -16,20 +16,21 @@ const MyCart = props => {
       console.log('response', response );
       return response.json()
     })
-    .then(setOrder)
+    .then(setProducts)
   }
 
   useEffect(getOpenOrder, [])
-
+    console.log('Open order', products)
   return (
     <>
       <main className="order-items">
         <h2>My Cart</h2>
         <ul>
           {
-            open_order.line_items.map(item => {
-                return (<li key={item.id}>{item.name}: {item.price}</li>)
-              })
+            products.map(item => {
+                    return (<li key={item.id}>{item.name}: {item.price}</li>)
+                })
+
           }
         </ul>
         <button>Add Payment to complete order</button>
