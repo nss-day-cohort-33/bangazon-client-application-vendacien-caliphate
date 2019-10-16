@@ -13,15 +13,14 @@ const Payment = props => {
 
     const deleteItem = (paymentItem) => {
         if (isAuthenticated())
-        fetch(`http://localhost:8000/paymenttypes?paymenttype_id=${paymentItem}`, {
+        fetch(`http://localhost:8000/paymenttypes/${paymentItem}`, {
           method: "DELETE",
           headers: {
             "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
-          .then(res => res.json())
           .then(() => {
-              props.history.push("/paymentlist")
+              props.history.push("/mysettings")
           })
       }
 
