@@ -51,7 +51,7 @@ const ProductDetails = props => {
                             <h3>Price: ${product.price}</h3>
                             <h3>Quantity Available : {product.quantity}</h3>
                             <button className="fakeLink addToOrder__link"
-                                onClick={() => addToOrder(product.id)}> Add to Order </button>
+                                onClick={() => addToOrder(product)}> Add to Order </button>
                             </div>
                             </>
                         )
