@@ -9,8 +9,10 @@ import ProductList from "../product/ProductList";
 const HomePage = props => {
   const [products, setProducts] = useState([]);
   const search = useRef()
+  console.log("search", search)
 
-  useEffect(() => {
+
+  const getTwentyProducts = () => {
     fetch("http://localhost:8000/products", {
       method: "GET",
       headers: {
@@ -19,11 +21,26 @@ const HomePage = props => {
     })
       .then(res => res.json())
       .then(setProducts);
-  }, []);
+  }
+
+
+  const filterProductsCity = (city) => {
+    fetch(`http://localhost:8000/products?city=${city}`, {
+      method: "Get",
+      headers: {
+        Accept: "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(setProducts)
+  }
+  useEffect(getTwentyProducts, [])
+  useEffect(() => filterProductsCity, [])
 
   const SubmitSearch = e => {
     e.preventDefault()
     console.log("it works")
+    filterProductsCity(search.current.value)
   }
 
   return (
@@ -32,7 +49,7 @@ const HomePage = props => {
         <label name="city">Search for a City</label>
         <br></br>
         <form onSubmit={SubmitSearch}>
-          <input placeholder="ex: Nashville" autoFocus name="city" ref={search} type="text">
+          <input placeholder="ex: Nashville" autoFocus name="city" defaultValue="" ref={search} type="text">
           </input>
 
         </form>
