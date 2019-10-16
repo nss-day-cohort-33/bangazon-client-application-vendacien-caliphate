@@ -28,7 +28,6 @@ const ProductForm = props => {
       quantity: parseInt(quantity.current.value),
       city: city.current.value.toLowerCase(),
       producttype_id: parseInt(category_id.current.value),
-      customer_id: parseInt(localStorage.getItem("customer_id")),
       product_image: ""
     };
     if (category_id.current.value === "") {
