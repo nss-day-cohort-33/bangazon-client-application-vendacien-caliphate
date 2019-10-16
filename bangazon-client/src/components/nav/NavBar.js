@@ -30,6 +30,9 @@ const NavBar = props => {
                     <Link className="nav-link" to="/mysettings">My Profile</Link>
                 </li> : null
                 }
+                <li className="nav-item">
+                    <Link className="nav-link" to="/mycart">My Cart</Link>
+                </li>
 
                 {
                     isAuthenticated() ?
