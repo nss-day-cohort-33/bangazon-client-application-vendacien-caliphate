@@ -16,7 +16,7 @@ const ProductCategoryList = props => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+                // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
             }
         })
             .then(response => response.json())
@@ -27,11 +27,13 @@ const ProductCategoryList = props => {
 
     return (
         <>
-            { products.length > 0 ?
+        {props.category.filter(cat => cat.id == props.categoryId).map(cat =>
+
+            products.length > 0 ?
               <article className="categoryList">
-                <Link className="nav-link" to={`/types/${props.category.id}`}>
-                <h3>{props.category.name}({products.length})</h3>
-                </Link>
+                {/* <Link className="nav-link" to={`/types/${props.category.id}`}> */}
+                <h3>{cat.name}</h3>
+                {/* </Link> */}
                 <div className={`productDiv category-${props.category.id}`}>
                   {
                       products.map(product =>
@@ -42,7 +44,7 @@ const ProductCategoryList = props => {
             </article>
             :
             ""
-            }
+        )}
         </>
     )
 }

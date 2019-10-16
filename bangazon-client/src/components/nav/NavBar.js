@@ -15,15 +15,21 @@ const NavBar = props => {
                 <li className="nav-item">
                     <Link className="nav-link" to="/types">Product Category</Link>
                 </li>
+                {isAuthenticated() ?
                 <li className="nav-item">
                     <Link className="nav-link" to="/productform">Sell Product</Link>
-                </li>
+                </li> : null
+                }
+                {isAuthenticated() ?
                 <li className="nav-item">
                     <Link className="nav-link" to="/MyProducts">MyProducts</Link>
-                </li>
+                </li> : null
+                }
+                {isAuthenticated() ?
                 <li className="nav-item">
                     <Link className="nav-link" to="/mysettings">My Profile</Link>
-                </li>
+                </li> : null
+                }
                 <li className="nav-item">
                     <Link className="nav-link" to="/mycart">My Cart</Link>
                 </li>
