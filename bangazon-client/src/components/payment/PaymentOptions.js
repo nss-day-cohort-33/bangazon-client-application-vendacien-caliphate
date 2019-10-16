@@ -13,7 +13,9 @@ const PaymentOptions = props => {
     fetch("http://localhost:8000/paymenttypes", {
       method: "GET",
       headers: {
-        Accept: "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
       }
     })
       .then(res => res.json())

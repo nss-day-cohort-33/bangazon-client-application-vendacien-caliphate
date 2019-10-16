@@ -13,13 +13,27 @@ const ProductDetails = props => {
         fetch(`http://localhost:8000/products?product_Id=${props.match.params.productId}`, {
           method: "GET",
           headers: {
-            Accept: "application/json"
-            // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
           .then(res => res.json())
           .then(setProduct);
       }, []);
+
+    const addToOrder = (newOrder) => {
+            fetch(`http://localhost:8000/orders`, {
+                "method": "POST",
+                headers :{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+                },
+                body: JSON.stringify(newOrder)
+            })
+                .then(response => response.json())
+        }
 
 
 
@@ -37,7 +51,7 @@ const ProductDetails = props => {
                             <h3>Price: ${product.price}</h3>
                             <h3>Quantity Available : {product.quantity}</h3>
                             <button className="fakeLink addToOrder__link"
-                                onClick={() => props.getAttractions(props.area.id)}> Add to Order </button>
+                                onClick={() => addToOrder(product)}> Add to Order </button>
                             </div>
                             </>
                         )
