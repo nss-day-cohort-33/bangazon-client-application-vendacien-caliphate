@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 // // """
-// //    Author: Drew Palazola
+// //    Author: Drew Palazola and Jake Scott
 //
 // // """
 
@@ -16,7 +16,9 @@ const Payment = props => {
         fetch(`http://localhost:8000/paymenttypes/${paymentItem}`, {
           method: "DELETE",
           headers: {
-            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
           }
         })
           .then(() => {
@@ -29,6 +31,7 @@ const Payment = props => {
             <section className="payment">
                 <h4>{props.payment.merchant_name}</h4>
                 <button onClick={() => {deleteItem(props.payment.id)}}>Delete This Payment Option</button>
+
             </section>
         </>
     )

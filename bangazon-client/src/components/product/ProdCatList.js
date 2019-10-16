@@ -11,11 +11,16 @@ const ProductCategoryList = props => {
     const [products, setProducts] = useState([])
 
     const getProducts = () => {
-            fetch(`http://localhost:8000/products?category=${props.category.id}`, {
-                "method": "GET",
-            })
-                .then(response => response.json())
-                .then(setProducts)
+        fetch(`http://localhost:8000/products?category=${props.categoryId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+            }
+        })
+            .then(response => response.json())
+            .then(setProducts)
     }
 
     useEffect(getProducts, [])

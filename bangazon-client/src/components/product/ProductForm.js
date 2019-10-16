@@ -55,6 +55,7 @@ const ProductForm = props => {
       .then(response => response.json())
       //   Store itinerary items in state variable
       .then(categoryList => {
+        console.log(categoryList,"CatagoryList")
         setCategoryList(categoryList);
       });
   };
@@ -64,8 +65,8 @@ const ProductForm = props => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+        "Accept": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(newProduct)
     }).then(res => res.json());

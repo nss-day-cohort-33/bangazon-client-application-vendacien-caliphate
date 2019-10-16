@@ -7,25 +7,11 @@ import ProductList from "../product/ProductList";
 // // """
 
 const HomePage = props => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/products", {
-      method: "GET",
-      headers: {
-        Accept: "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(setProducts);
-  }, []);
-
-
   return (
     <>
       <main className="explorer">
 
-        <h4><ProductList products={products} {...props} /></h4>
+        <h4><ProductList {...props} /></h4>
 
       </main>
     </>
