@@ -13,8 +13,9 @@ const ProductDetails = props => {
         fetch(`http://localhost:8000/products?product_Id=${props.match.params.productId}`, {
           method: "GET",
           headers: {
-            Accept: "application/json"
-            // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
           .then(res => res.json())

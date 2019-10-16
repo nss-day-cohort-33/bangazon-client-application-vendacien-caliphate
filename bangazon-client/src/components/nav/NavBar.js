@@ -19,6 +19,9 @@ const NavBar = props => {
                     <Link className="nav-link" to="/productform">Sell Product</Link>
                 </li>
                 <li className="nav-item">
+                    <Link className="nav-link" to="/MyProducts">MyProducts</Link>
+                </li>
+                <li className="nav-item">
                     <Link className="nav-link" to="/mysettings">My Profile</Link>
                 </li>
 

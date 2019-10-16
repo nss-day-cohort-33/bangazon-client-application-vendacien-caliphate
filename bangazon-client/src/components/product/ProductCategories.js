@@ -7,13 +7,34 @@ import ProductCategory from "./ProductCategory"
 // Gets categories, then maps over them.
 
 const ProductCategories = props => {
+    const [categories, setCategories] = useState([])
+
+
+    const getCategories = () => {
+            fetch(`http://localhost:8000/producttypes`, {
+                "method": "GET",
+                headers :{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+                }
+            })
+                .then(response => response.json())
+                .then(setCategories)
+    }
+
+
+    useEffect(() => {
+        getCategories()
+    }, [])
+
 
 
     return (
         <>
             <article className="categoryList">
                 {
-                    props.categories.map(category =>
+                    categories.map(category =>
                         <ProductCategory key={category.id} category={category} />
                     )
                 }
