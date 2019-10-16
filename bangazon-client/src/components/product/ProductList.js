@@ -8,32 +8,32 @@ import Product from "./Product"
 
 
 const ProductList = props => {
-    const [products, setProducts] = useState([])
+    // const [products, setProducts] = useState([])
 
-    const getProducts = () => {
-            fetch(`http://localhost:8000/products`, {
-                "method": "GET",
-                headers :{
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
-                }
-            })
-                .then(response => response.json())
-                .then(setProducts)
-        }
+    // const getProducts = () => {
+    //         fetch(`http://localhost:8000/products`, {
+    //             "method": "GET",
+    //             headers :{
+    //                 "Content-Type": "application/json",
+    //                 "Accept": "application/json",
+    //                 // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
+    //             }
+    //         })
+    //             .then(response => response.json())
+    //             .then(setProducts)
+    //     }
 
 
-    useEffect(() => {
-        getProducts()
-    }, [])
+    // useEffect(() => {
+    //     getProducts()
+    // }, [])
 
     return (
         <>
                 <ol>
             <article className="productList">
                 {
-                    products.slice(-20).map(product =>
+                    props.products.slice(-20).map(product =>
                         <Product key={product.id}
                             product={product} {...props} />)
                 }

@@ -55,7 +55,7 @@ const HomePage = props => {
         </form>
 
 
-        <h4><ProductList {...props} /></h4>
+        <h4><ProductList {...props} products={products} /></h4>
 
       </main>
     </>
