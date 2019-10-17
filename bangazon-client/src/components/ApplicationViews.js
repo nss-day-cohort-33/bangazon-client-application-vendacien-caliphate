@@ -117,10 +117,6 @@ const ApplicationViews = () => {
                 return <MyProducts {...props} />
             }}
             />
-
-
-
-
         </React.Fragment>
     )
 }

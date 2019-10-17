@@ -10,6 +10,7 @@ const HomePage = props => {
   const [products, setProducts] = useState([]);
   const search = useRef()
   console.log("search", search)
+  console.log("products", products)
 
 
   const getTwentyProducts = () => {
@@ -34,13 +35,20 @@ const HomePage = props => {
       .then(res => res.json())
       .then(setProducts)
   }
-  useEffect(getTwentyProducts, [])
-  useEffect(() => filterProductsCity, [])
+
+  useEffect(() => {
+    getTwentyProducts()}, [])
 
   const SubmitSearch = e => {
     e.preventDefault()
     console.log("it works")
     filterProductsCity(search.current.value)
+
+  }
+
+  const refresh = (e) => {
+    e.preventDefault()
+    getTwentyProducts()
   }
 
   return (
@@ -49,14 +57,12 @@ const HomePage = props => {
         <label name="city">Search for a City</label>
         <br></br>
         <form onSubmit={SubmitSearch}>
-          <input placeholder="ex: Nashville" autoFocus name="city" defaultValue="" ref={search} type="text">
+          <input placeholder="ex: Nashville" name="city" defaultValue="" ref={search} type="text">
           </input>
-
+          <button type='submit'>Submit</button>
         </form>
-
-
+          <a href="" onClick={refresh}>Reset</a>
         <h4><ProductList {...props} products={products} /></h4>
-
       </main>
     </>
   );

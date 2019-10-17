@@ -26,7 +26,6 @@ const PaymentForm = props => {
                 "merchant_name": merchant_name.current.value,
                 "account_number": account_number.current.value,
                 "exp_date": exp_date.current.value,
-                "created_at": created
 
             })
             })
@@ -42,7 +41,6 @@ const PaymentForm = props => {
 
         }
     }
-
 
   return (
     <>
@@ -62,8 +60,6 @@ const PaymentForm = props => {
           <label htmlFor="exp_date">Expiration Date:</label>
           <input type="date" ref={exp_date} name="exp_date" min={new Date()} required></input>
         </fieldset>
-        <input type="date" ref={created_at} name="exp_date" defaultValue={new Date()} hidden></input>
-        <button type="submit">Add Payment</button>
       </form>
     </>
   )
