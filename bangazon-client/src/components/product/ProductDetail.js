@@ -8,12 +8,10 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 const ProductDetails = props => {
     const { isAuthenticated } = useSimpleAuth()
-    const [product, setProduct] = useState([]);
+    const [productDetail, setProduct] = useState([]);
 
-
-    useEffect(() => {
-        console.log("parms", +props.match.params.productId)
-        fetch(`http://localhost:8000/products?product_Id=${+props.match.params.productId}`, {
+    const getProduct =()=> {
+        fetch(`http://localhost:8000/products/${+props.match.params.productId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -22,6 +20,11 @@ const ProductDetails = props => {
         })
           .then(res => res.json())
           .then(setProduct);
+    }
+
+
+    useEffect(() => {
+        getProduct()
       }, []);
 
     const addToOrder = (newOrder) => {
@@ -38,29 +41,23 @@ const ProductDetails = props => {
         }
 
 
-        console.log("product", product)
+        console.log("product", productDetail)
     return (
         <>
             <section className="ProductDetails">
-
-                    {
-                        product.map(product =>
                             <>
-                            <div  key={product.id}>
-                            <h3>Name of Product: {product.name}</h3>
-                            <h3>Product Description: {product.description}</h3>
-                            <h3>Price: ${product.price}</h3>
-                            <h3>Quantity Available : {product.quantity}</h3>
+                            <div  key={productDetail.id}>
+                            <h3>Name of Product: {productDetail.name}</h3>
+                            <h3>Product Description: {productDetail.description}</h3>
+                            <h3>Price: ${productDetail.price}</h3>
+                            <h3>Quantity Available : {productDetail.quantity}</h3>
                             {isAuthenticated() ?
                             <button className="fakeLink addToOrder__link"
-                                onClick={() => addToOrder(product)}> Add to Order </button>
+                                onClick={() => addToOrder(productDetail)}> Add to Order </button>
                                 : null
                             }
                             </div>
                             </>
-                        )
-                    }
-
             </section>
         </>
     )
