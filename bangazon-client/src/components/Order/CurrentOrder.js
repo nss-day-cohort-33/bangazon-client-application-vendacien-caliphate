@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
 
 const MyCart = props => {
   const [products, setProducts] = useState([]);
   const [paymenttypes, setPaymentTypes] = useState([]);
   const payment = useRef();
-=======
-import React, { useState, useEffect } from "react";
-
-const MyCart = props => {
-  const [products, setProducts] = useState([]);
->>>>>>> master
 
   const getOpenOrder = () => {
     fetch(`http://localhost:8000/orders/cart`, {
