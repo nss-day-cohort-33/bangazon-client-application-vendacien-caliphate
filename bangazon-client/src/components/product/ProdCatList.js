@@ -29,9 +29,7 @@ const ProductCategoryList = props => {
 
             products.length > 0 ?
               <article className="categoryList">
-                {/* <Link className="nav-link" to={`/types/${props.category.id}`}> */}
                 <h3>{cat.name}</h3>
-                {/* </Link> */}
                 <div className={`productDiv category-${props.category.id}`}>
                   {
                       products.map(product =>
