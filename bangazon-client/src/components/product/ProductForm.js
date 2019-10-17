@@ -155,6 +155,7 @@ const ProductForm = props => {
               ref={price}
               type="number"
               name="price"
+              max={10000}
               className="form-control"
               placeholder="Product Price"
               required
