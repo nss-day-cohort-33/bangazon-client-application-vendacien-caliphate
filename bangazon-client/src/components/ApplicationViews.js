@@ -1,12 +1,10 @@
 import { Route } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import { withRouter } from "react-router-dom"
-import useSimpleAuth from "../hooks/ui/useSimpleAuth"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
 import HomePage from "./home/HomePage"
 import ProductCategories from "./product/ProductCategories"
-import ProductCategory  from "./product/ProductCategory"
 import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import PaymentForm from "./payment/PaymentForm"
@@ -27,7 +25,6 @@ const ApplicationViews = () => {
                 headers :{
                     "Content-Type": "application/json",
                     "Accept": "application/json",
-                    // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
                 }
             })
                 .then(response => response.json())
@@ -72,14 +69,6 @@ const ApplicationViews = () => {
             <Route exact path="/types/:categoryId(\d+)" render={(props) => {
                 const categoryId = +props.match.params.categoryId
                 console.log("categoryId",+props.match.params.categoryId)
-                // console.log("params",props.match.params.categoryId, categories )
-                // let category = categories.find(category =>
-                // category.id === +props.match.params.categoryId
-                // )
-                // console.log(category)
-                // if (!category) {
-                //     category = {id:404, name:"Category Not Found." }
-                // }
                 return <ProductCategoryList {...props} category={ categories } categoryId={categoryId} />
                 }}
             />
@@ -122,5 +111,3 @@ const ApplicationViews = () => {
 }
 
 export default withRouter(ApplicationViews)
-
-// {...props} category={ category }

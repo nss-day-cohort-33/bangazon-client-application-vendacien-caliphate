@@ -1,6 +1,5 @@
 import React from "react"
 import { useEffect, useState } from "react"
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import ProductCategory from "./ProductCategory"
 
 // Created By: Alex Rumsey
@@ -16,7 +15,6 @@ const ProductCategories = props => {
                 headers :{
                     "Content-Type": "application/json",
                     "Accept": "application/json",
-                    // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
                 }
             })
                 .then(response => response.json())

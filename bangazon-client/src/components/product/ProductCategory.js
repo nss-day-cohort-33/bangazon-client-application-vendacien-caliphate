@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import Product from "./ProductCard"
 import "./ProductCategory.css"
 
@@ -16,8 +15,6 @@ const ProductCategory = props => {
                 headers :{
                     "Content-Type": "application/json",
                     "Accept": "application/json",
-                    // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
-
                 }
             })
                 .then(response => response.json())
