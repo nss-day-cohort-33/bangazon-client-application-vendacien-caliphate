@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Product from "./Product"
 
 // // """
@@ -8,26 +8,6 @@ import Product from "./Product"
 
 
 const ProductList = props => {
-    // const [products, setProducts] = useState([])
-
-    // const getProducts = () => {
-    //         fetch(`http://localhost:8000/products`, {
-    //             "method": "GET",
-    //             headers :{
-    //                 "Content-Type": "application/json",
-    //                 "Accept": "application/json",
-    //                 // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`,
-    //             }
-    //         })
-    //             .then(response => response.json())
-    //             .then(setProducts)
-    //     }
-
-
-    // useEffect(() => {
-    //     getProducts()
-    // }, [])
-
     return (
         <>
                 <ol>
