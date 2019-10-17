@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 import Product from "./ProductCard"
 import "./ProductCategory.css"
 
@@ -27,7 +25,7 @@ const ProductCategoryList = props => {
 
     return (
         <>
-        {props.category.filter(cat => cat.id == props.categoryId).map(cat =>
+        {props.category.filter(cat => cat.id === props.categoryId).map(cat =>
 
             products.length > 0 ?
               <article className="categoryList">

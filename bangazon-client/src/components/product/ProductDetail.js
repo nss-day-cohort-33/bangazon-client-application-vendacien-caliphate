@@ -12,12 +12,12 @@ const ProductDetails = props => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:8000/products?product_Id=${props.match.params.productId}`, {
+        console.log("parms", +props.match.params.productId)
+        fetch(`http://localhost:8000/products?product_Id=${+props.match.params.productId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
           .then(res => res.json())
@@ -38,14 +38,13 @@ const ProductDetails = props => {
         }
 
 
-
+        console.log("product", product)
     return (
         <>
             <section className="ProductDetails">
 
                     {
-                        product.filter(product => product.id == props.match.params.productId)
-                        .map(product =>
+                        product.map(product =>
                             <>
                             <div  key={product.id}>
                             <h3>Name of Product: {product.name}</h3>
