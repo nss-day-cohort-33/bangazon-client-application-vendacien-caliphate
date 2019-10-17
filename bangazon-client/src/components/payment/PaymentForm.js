@@ -8,13 +8,15 @@ const PaymentForm = props => {
     const merchant_name = useRef();
     const account_number = useRef();
     const exp_date = useRef();
-    const created_at = useRef();
     const { isAuthenticated } = useSimpleAuth();
+
+    const today = new Date().setHours(0,0,0,0)
 
     const createPayment = e => {
         e.preventDefault();
-        const created = `${exp_date.current.value}-01`
-        if (isAuthenticated()) {
+        if (isAuthenticated() & (new Date(exp_date.current.value) <= today)) {
+          alert("Please provide a card with a date in the future")}
+          else {
             fetch(`http://localhost:8000/paymenttypes`, {
                 "method": "POST",
                 "headers": {
@@ -60,6 +62,7 @@ const PaymentForm = props => {
           <label htmlFor="exp_date">Expiration Date:</label>
           <input type="date" ref={exp_date} name="exp_date" min={new Date()} required></input>
         </fieldset>
+        <button type="submit">Add Payment</button>
       </form>
     </>
   )

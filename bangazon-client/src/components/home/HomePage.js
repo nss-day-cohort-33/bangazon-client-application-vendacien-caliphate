@@ -9,8 +9,6 @@ import ProductList from "../product/ProductList";
 const HomePage = props => {
   const [products, setProducts] = useState([]);
   const search = useRef()
-  console.log("search", search)
-  console.log("products", products)
 
 
   const getTwentyProducts = () => {
@@ -41,7 +39,6 @@ const HomePage = props => {
 
   const SubmitSearch = e => {
     e.preventDefault()
-    console.log("it works")
     filterProductsCity(search.current.value)
 
   }
