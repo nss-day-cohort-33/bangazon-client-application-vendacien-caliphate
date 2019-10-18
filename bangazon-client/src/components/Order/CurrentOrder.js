@@ -17,8 +17,17 @@ const MyCart = props => {
       .then(response => {
         return response.json();
       })
-      .then(setProducts);
-  };
+
+      .then((response) => {
+        console.log(response)
+        if("message" in response === true){
+          alert("Please add a product to begin a cart")
+          props.history.push("/")
+        }
+        else{
+      setProducts(response)};
+  });
+}
 
   const getPaymentTypes = () => {
     fetch(
@@ -41,6 +50,10 @@ const MyCart = props => {
   };
 
   const completeOrder = () => {
+    if(payment.current.value === ""){
+      alert("Please Select a Payment Type Fool!")
+    }
+    else{
     fetch(`http://localhost:8000/orders/cart`, {
       method: "PUT",
       headers: {
@@ -55,7 +68,7 @@ const MyCart = props => {
     .then(() => {
       props.history.push("/")
     })
-  };
+  }};
 
   useEffect(() => {
     getOpenOrder();
