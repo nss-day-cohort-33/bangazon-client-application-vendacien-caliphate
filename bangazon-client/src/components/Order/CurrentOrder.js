@@ -18,8 +18,17 @@ const MyCart = props => {
         console.log("response", response);
         return response.json();
       })
-      .then(setProducts);
-  };
+
+      .then((response) => {
+        console.log(response)
+        if("message" in response === true){
+          alert("Please add a product to begin a cart")
+          props.history.push("/")
+        }
+        else{
+      setProducts(response)};
+  });
+}
 
   const getPaymentTypes = () => {
     fetch(
