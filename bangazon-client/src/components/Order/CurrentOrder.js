@@ -42,6 +42,22 @@ const MyCart = props => {
       .then(setPaymentTypes);
   };
 
+  const deleteItem = productItem => {
+    fetch(`http://localhost:8000/orders/cart`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+      },
+      body: JSON.stringify({
+        "product_id": productItem
+      })
+    }).then(() => {
+      getOpenOrder()
+    });
+  };
+
   const completeOrder = () => {
     fetch(`http://localhost:8000/orders/cart`, {
       method: "PUT",
@@ -74,6 +90,13 @@ const MyCart = props => {
             return (
               <li key={item.id}>
                 {item.name}: {item.price}
+                <button
+                  onClick={() => {
+                    deleteItem(item.id);
+                  }}
+                >
+                  remove
+                </button>
               </li>
             );
           })}
@@ -102,3 +125,4 @@ const MyCart = props => {
 };
 
 export default MyCart;
+
