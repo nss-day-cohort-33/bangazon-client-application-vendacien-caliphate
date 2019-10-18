@@ -19,12 +19,12 @@ const MyCart = props => {
       })
 
       .then((response) => {
-        console.log(response)
         if("message" in response === true){
           alert("Please add a product to begin a cart")
           props.history.push("/")
         }
         else{
+          console.log("response", response)
       setProducts(response)};
   });
 }
@@ -86,6 +86,19 @@ const MyCart = props => {
     })
   }};
 
+  const cancelOrder = () => {
+    console.log("delete works")
+    fetch(`http://localhost:8000/orders/cart`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+      }
+    }).then(() => {
+      alert("Your Order has been canceled")
+      props.history.push("/")
+    });
+  };
+
   useEffect(() => {
     getOpenOrder();
     getPaymentTypes();
@@ -129,6 +142,8 @@ const MyCart = props => {
           {" "}
           Complete Order{" "}
         </button>
+        <br></br>
+        <button onClick={cancelOrder}>Cancel Order</button>
       </main>
     </>
   );
