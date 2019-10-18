@@ -50,6 +50,10 @@ const MyCart = props => {
   };
 
   const completeOrder = () => {
+    if(payment.current.value === ""){
+      alert("Please Select a Payment Type Fool!")
+    }
+    else{
     fetch(`http://localhost:8000/orders/cart`, {
       method: "PUT",
       headers: {
@@ -64,7 +68,7 @@ const MyCart = props => {
     .then(() => {
       props.history.push("/")
     })
-  };
+  }};
 
   useEffect(() => {
     getOpenOrder();
