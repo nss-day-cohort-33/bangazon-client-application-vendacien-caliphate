@@ -33,7 +33,9 @@ const ProductCategory = props => {
                 <div className={`productDiv category-${props.category.id}`}>
                   {
                       products.slice(0, 3).map(product =>
+                    <div className={`card product-${product.id}`} style={{width: "18rem"}}>
                         <Product key={product.id} product={product} />
+                        </div>
                         )
                     }
                 </div>
