@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const MyCart = props => {
   const [products, setProducts] = useState([]);
+  const [paymenttypes, setPaymentTypes] = useState([]);
+  const payment = useRef();
 
   const getOpenOrder = () => {
     fetch(`http://localhost:8000/orders/cart`, {
@@ -17,10 +19,30 @@ const MyCart = props => {
         return response.json();
       })
       .then(setProducts);
-    console.log("setting", products);
   };
 
-  const deleteItem = productItem => {
+  const getPaymentTypes = () => {
+    fetch(
+      `http://localhost:8000/paymenttypes?customer_id=${localStorage.getItem(
+        "customer_id"
+      )}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+        }
+      }
+    )
+      .then(response => {
+        console.log("response", response);
+        return response.json();
+      })
+      .then(setPaymentTypes);
+  };
+
+  const completeOrder = () => {
     fetch(`http://localhost:8000/orders/cart`, {
       method: "PUT",
       headers: {
@@ -29,16 +51,20 @@ const MyCart = props => {
         Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify({
-        product_id: productItem
+        "payment_id": payment.current.value
       })
-    }).then(() => {
-      getOpenOrder()
-    });
+    })
+    .then(() => {
+      props.history.push("/")
+    })
   };
 
-  useEffect(getOpenOrder, []);
-  console.log("Open order", products);
+  useEffect(() => {
+    getOpenOrder();
+    getPaymentTypes();
+  }, []);
 
+  console.log("ORDER", products);
   return (
     <>
       <main className="order-items">
@@ -46,20 +72,30 @@ const MyCart = props => {
         <ul>
           {products.map(item => {
             return (
-              <li key={item.id} id={item.id}>
+              <li key={item.id}>
                 {item.name}: {item.price}
-                <button
-                  onClick={() => {
-                    deleteItem(item.id);
-                  }}
-                >
-                  remove
-                </button>
               </li>
             );
           })}
         </ul>
-        <button>Add Payment to complete order</button>
+        <label htmlFor="paymenttypes"> Select a Payment: </label>
+        <select ref={payment}>
+          <option value="" >
+            Select a payment type...
+          </option>
+          {paymenttypes.map(payment => (
+            <option key={payment.id} value={payment.id}>
+              {payment.merchant_name}
+            </option>
+          ))}
+        </select>
+        <button
+          className="fakeLink addToOrder__link"
+          onClick={() => completeOrder()}
+        >
+          {" "}
+          Complete Order{" "}
+        </button>
       </main>
     </>
   );
