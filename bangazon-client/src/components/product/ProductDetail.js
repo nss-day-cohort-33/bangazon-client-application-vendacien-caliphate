@@ -38,10 +38,12 @@ const ProductDetails = props => {
                 body: JSON.stringify(newOrder)
             })
                 .then(response => response.json())
+                .then(() => {
+                    props.history.push("/")
+                  })
         }
 
-
-        console.log("product", productDetail)
+        const totalAvailable = productDetail.quantity - productDetail.total_sold
     return (
         <>
             <section className="ProductDetails">
@@ -50,7 +52,7 @@ const ProductDetails = props => {
                             <h3>Name of Product: {productDetail.name}</h3>
                             <h3>Product Description: {productDetail.description}</h3>
                             <h3>Price: ${productDetail.price}</h3>
-                            <h3>Quantity Available : {productDetail.quantity}</h3>
+                            <h3>Quantity Available: {totalAvailable} </h3>
                             {isAuthenticated() ?
                             <button className="fakeLink addToOrder__link"
                                 onClick={() => addToOrder(productDetail)}> Add to Order </button>

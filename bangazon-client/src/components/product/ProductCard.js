@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from 'react-router-dom'
 
 const Product = props => {
-
+  const totalAvailable = props.product.quantity - props.product.total_sold
     return (
         <>
 
@@ -14,7 +14,8 @@ const Product = props => {
                   </Link>
               </section>
               <p className="card-text">${props.product.price}</p>
-              <p className="card-text">Quantity: <b>{props.product.quantity}</b> available</p>
+              <p className="card-text">Current Inventory: <b>{totalAvailable}</b> available</p>
+              <p className="card-text">Number Sold: <b>{props.product.total_sold}</b></p>
             </div>
           </div>
 
