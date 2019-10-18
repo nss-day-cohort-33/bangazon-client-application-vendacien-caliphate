@@ -41,7 +41,6 @@ const ProductDetails = props => {
         }
 
 
-        console.log("product", productDetail)
     return (
         <>
             <section className="ProductDetails">
