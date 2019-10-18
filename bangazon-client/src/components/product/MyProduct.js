@@ -44,7 +44,7 @@ const MyProducts = props => {
            <h1>My Products</h1>
            {
                       myProducts.map(product =>
-                        <p>
+                        <p key={product.id}>
                         <ProductCard product={product} /> <button onClick={() => {deleteMyProduct(product.id)}}>Delete</button> </p>
                         )
                     }
