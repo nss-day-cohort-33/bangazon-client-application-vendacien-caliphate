@@ -68,7 +68,6 @@ const ApplicationViews = () => {
 
             <Route exact path="/types/:categoryId(\d+)" render={(props) => {
                 const categoryId = +props.match.params.categoryId
-                console.log("categoryId",+props.match.params.categoryId)
                 return <ProductCategoryList {...props} category={ categories } categoryId={categoryId} />
                 }}
             />
