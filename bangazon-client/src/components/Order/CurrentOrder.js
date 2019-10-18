@@ -15,7 +15,6 @@ const MyCart = props => {
       }
     })
       .then(response => {
-        console.log("response", response);
         return response.json();
       })
       .then(setProducts);
@@ -36,7 +35,6 @@ const MyCart = props => {
       }
     )
       .then(response => {
-        console.log("response", response);
         return response.json();
       })
       .then(setPaymentTypes);
@@ -64,7 +62,6 @@ const MyCart = props => {
     getPaymentTypes();
   }, []);
 
-  console.log("ORDER", products);
   return (
     <>
       <main className="order-items">

@@ -54,7 +54,6 @@ const ProductForm = props => {
       .then(response => response.json())
       //   Store itinerary items in state variable
       .then(categoryList => {
-        console.log(categoryList,"CatagoryList")
         setCategoryList(categoryList);
       });
   };
@@ -77,7 +76,6 @@ const ProductForm = props => {
 
     const handler = e => {
       if (e.keyCode === 27) {
-        console.log(`MyItinerary useEffect() modalIsOpen = ${modalIsOpen}`);
         if (modalIsOpen) {
           toggleDialog(false);
         }
