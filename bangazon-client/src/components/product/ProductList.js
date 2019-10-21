@@ -13,7 +13,7 @@ const ProductList = props => {
                 <ol>
             <article className="productList">
                 {
-                    props.products.sort((a, b) => {return b.id - a.id}).map(product =>
+                    props.products.map(product =>
                         <Product key={product.id}
                             product={product} {...props} />)
                 }
